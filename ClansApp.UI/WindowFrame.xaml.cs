@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ClansApp.UI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for WindowFrame.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WindowFrame : Window
     {
-        public MainWindow()
+        public WindowFrame()
         {
             InitializeComponent();
         }
