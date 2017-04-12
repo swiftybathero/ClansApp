@@ -5,16 +5,19 @@
              xmlns:vm="clr-namespace:ClansApp.UI.ViewModels"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:cv="clr-namespace:ClansApp.UI.Converters"
+             xmlns:v="clr-namespace:ClansApp.UI.Views"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!--Converters-->
         <cv:MaximizeVisibilityConverter x:Key="MaximizeVisibilityConverter"/>
         <cv:RestoreVisibilityConverter x:Key="RestoreVisibilityConverter"/>
+        
         <!--Colors-->
         <Color x:Key="WindowFrameColor">#FFEFEFF2</Color>
         <Color x:Key="WindowFrameButtonMarkedColor">#C6C6C6</Color>
         <SolidColorBrush x:Key="WindowFrameBrush" Color="{StaticResource WindowFrameColor}"/>
         <SolidColorBrush x:Key="WindowFrameButonMarkedBrush" Color="{StaticResource WindowFrameButtonMarkedColor}"/>
+        
         <!--Styles-->
         <Style x:Key="WindowFrameButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="BorderThickness" Value="0"/>
@@ -36,6 +39,8 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
+        <!--Main window style-->
         <Style x:Key="WindowStyle" TargetType="{x:Type Window}">
             <Setter Property="WindowChrome.WindowChrome">
                 <Setter.Value>
@@ -50,6 +55,7 @@
             <Setter Property="WindowStyle" Value="None"/>
             <!--<Setter Property="AllowsTransparency" Value="True"/>-->
             <Setter Property="ResizeMode" Value="CanResizeWithGrip"/>
+            <Setter Property="WindowState" Value="{Binding WindowState}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
@@ -79,13 +85,11 @@
                                 </Border>
                                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" >
                                     <Button Style="{StaticResource WindowFrameButtonStyle}" 
-                                            Command="{Binding MinimizeWindowCommand}"
-                                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+                                            Command="{Binding MinimizeWindowCommand}">
                                         <Image Source="/Resources/MinimizeImage.png"/>
                                     </Button>
                                     <Button Style="{StaticResource WindowFrameButtonStyle}"
                                             Command="{Binding MaximizeWindowCommand}"
-                                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                             Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, 
                                                                  Path=WindowState, 
                                                                  Converter={StaticResource MaximizeVisibilityConverter}}">
@@ -93,7 +97,6 @@
                                     </Button>
                                     <Button Style="{StaticResource WindowFrameButtonStyle}"
                                             Command="{Binding RestoreWindowCommand}"
-                                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                             Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}},
                                                                  Path=WindowState,
                                                                  Converter={StaticResource RestoreVisibilityConverter}}">
@@ -114,5 +117,10 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <!--Data templates-->
+        <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+            <v:LoginView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

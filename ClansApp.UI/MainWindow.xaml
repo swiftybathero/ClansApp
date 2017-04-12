@@ -4,15 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClansApp.UI"
+        xmlns:v="clr-namespace:ClansApp.UI.Views"
+        xmlns:vm="clr-namespace:ClansApp.UI.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="350" 
         Width="525"
         Style="{StaticResource ResourceKey=WindowStyle}">
-    <!--<WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
-    </WindowChrome.WindowChrome>-->
-    <Grid>
-        
-    </Grid>
+    <ContentControl Content="{Binding Path=CurrentViewModel}"/>
 </Window>
