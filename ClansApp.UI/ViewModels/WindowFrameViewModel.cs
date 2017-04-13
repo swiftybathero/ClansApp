@@ -28,6 +28,21 @@ namespace ClansApp.UI.ViewModels
             }
         }
 
+        private ResizeMode _customResizeMode;
+        public ResizeMode CustomResizeMode
+        {
+            get
+            {
+                return _customResizeMode;
+            }
+            set
+            {
+                _customResizeMode = value;
+                OnPropertyChanged(nameof(CustomResizeMode));
+            }
+        }
+
+
         public ICommand CloseWindowCommand { get; set; }
         public ICommand MinimizeWindowCommand { get; set; }
         /// <summary>
@@ -39,6 +54,8 @@ namespace ClansApp.UI.ViewModels
 
         public WindowFrameViewModel()
         {
+            CustomResizeMode = ResizeMode.CanResizeWithGrip;
+
             CloseWindowCommand = new RelayCommand<object>((o) => (o as Window).Close() /*App.Current.Shutdown()*/);
             //MoveWindowCommand = new RelayCommand<object>((o) => (o as Window).DragMove());
             MinimizeWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Minimized);
@@ -46,6 +63,26 @@ namespace ClansApp.UI.ViewModels
             RestoreWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Normal);
 
             CurrentViewModel = new LoginViewModel();
+
+            PropertyChanged += WindowFrameViewModel_PropertyChanged;
+        }
+
+        private void WindowFrameViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // temporary fix of window fullscreen screen 'margin' problem
+            // problem still exists, when maximizing window by dragging it to top of the screen
+            if (e.PropertyName == nameof(CustomWindowState))
+            {
+                switch (CustomWindowState)
+                {
+                    case WindowState.Maximized:
+                        CustomResizeMode = ResizeMode.NoResize;
+                        break;
+                    default:
+                        CustomResizeMode = ResizeMode.CanResizeWithGrip;
+                        break;
+                }
+            }
         }
     }
 }
