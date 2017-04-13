@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\WindowFrameConverters.cs" />
     <Compile Include="Extensions\RelayCommand.cs" />
+    <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WindowFrameViewModel.cs" />

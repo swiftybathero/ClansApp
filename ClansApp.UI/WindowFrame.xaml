@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:ClansApp.UI"
         xmlns:v="clr-namespace:ClansApp.UI.Views"
         xmlns:vm="clr-namespace:ClansApp.UI.ViewModels"
+        xmlns:ext="clr-namespace:ClansApp.UI.Extensions"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="350" 
         Width="525"
-        Style="{StaticResource ResourceKey=WindowStyle}">
+        Style="{StaticResource ResourceKey=WindowStyle}"
+        ext:WindowExtensions.WindowStartupLocation="CenterScreen"> <!--This is pointless without binding, but i'm leaving it as an example of attached property behaviour-->
     <ContentControl Content="{Binding Path=CurrentViewModel}"/>
 </Window>

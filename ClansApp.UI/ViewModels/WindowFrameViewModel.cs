@@ -14,17 +14,17 @@ namespace ClansApp.UI.ViewModels
     {
         public ViewModelBase CurrentViewModel { get; set; }
 
-        private WindowState _windowState;
-        public WindowState WindowState
+        private WindowState _customWindowState;
+        public WindowState CustomWindowState
         {
             get
             {
-                return _windowState;
+                return _customWindowState;
             }
             set
             {
-                _windowState = value;
-                OnPropertyChanged(nameof(WindowState));
+                _customWindowState = value;
+                OnPropertyChanged(nameof(CustomWindowState));
             }
         }
 
@@ -41,9 +41,9 @@ namespace ClansApp.UI.ViewModels
         {
             CloseWindowCommand = new RelayCommand<object>((o) => (o as Window).Close() /*App.Current.Shutdown()*/);
             //MoveWindowCommand = new RelayCommand<object>((o) => (o as Window).DragMove());
-            MinimizeWindowCommand = new RelayCommand<object>((o) => WindowState = WindowState.Minimized);
-            MaximizeWindowCommand = new RelayCommand<object>((o) => WindowState = WindowState.Maximized);
-            RestoreWindowCommand = new RelayCommand<object>((o) => WindowState = WindowState.Normal);
+            MinimizeWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Minimized);
+            MaximizeWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Maximized);
+            RestoreWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Normal);
 
             CurrentViewModel = new LoginViewModel();
         }
