@@ -6,18 +6,27 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:cv="clr-namespace:ClansApp.UI.Converters"
              xmlns:v="clr-namespace:ClansApp.UI.Views"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="WindowFrame.xaml">
     <Application.Resources>
         <!--Converters-->
-        <cv:MaximizeVisibilityConverter x:Key="MaximizeVisibilityConverter"/>
-        <cv:RestoreVisibilityConverter x:Key="RestoreVisibilityConverter"/>
+        <cv:MaximizeRestoreVisibilityConverter x:Key="MaximizeVisibilityConverter" IsReverse="False"/>
+        <cv:MaximizeRestoreVisibilityConverter x:Key="RestoreVisibilityConverter" IsReverse="True"/>
 
         <!--Colors-->
         <Color x:Key="WindowFrameColor">#FFEFEFF2</Color>
         <Color x:Key="WindowFrameButtonMarkedColor">#C6C6C6</Color>
+        <Color x:Key="DefaultFontColor">#FF4E4E50</Color> 
+        <Color x:Key="ContentFontColor">#FF262627</Color>
         <SolidColorBrush x:Key="WindowFrameBrush" Color="{StaticResource WindowFrameColor}"/>
         <SolidColorBrush x:Key="WindowFrameButonMarkedBrush" Color="{StaticResource WindowFrameButtonMarkedColor}"/>
-        
+        <SolidColorBrush x:Key="DefaultFontColorBrush" Color="{StaticResource DefaultFontColor}"/>
+        <SolidColorBrush x:Key="ContentFontColorBrush" Color="{StaticResource ContentFontColor}"/>
+
+        <!--Default sizes-->
+        <sys:Double x:Key="DefaultWindowHeight">400</sys:Double>
+        <sys:Double x:Key="DefaultWindowWidth">700</sys:Double>
+
         <!--Styles-->
         <Style x:Key="WindowFrameButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="BorderThickness" Value="0"/>
@@ -39,7 +48,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <!--Main window style-->
         <Style x:Key="WindowStyle" TargetType="{x:Type Window}">
             <Setter Property="WindowChrome.WindowChrome">
@@ -47,16 +56,14 @@
                     <WindowChrome CaptionHeight="30" ResizeBorderThickness="5"/>
                 </Setter.Value>
             </Setter>
-            <Setter Property="DataContext">
-                <Setter.Value>
-                    <vm:WindowFrameViewModel/>
-                </Setter.Value>
-            </Setter>
             <Setter Property="WindowStyle" Value="None"/>
             <!--<Setter Property="AllowsTransparency" Value="True"/>-->
-            <!--<Setter Property="ResizeMode" Value="CanResizeWithGrip"/>-->
             <Setter Property="ResizeMode" Value="{Binding CustomResizeMode}"/>
             <Setter Property="WindowState" Value="{Binding CustomWindowState}"/>
+            <Setter Property="MinHeight" Value="{StaticResource DefaultWindowHeight}"/>
+            <Setter Property="MinWidth" Value="{StaticResource DefaultWindowWidth}"/>
+            <Setter Property="Height" Value="{StaticResource DefaultWindowHeight}"/>
+            <Setter Property="Width" Value="{StaticResource DefaultWindowWidth}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
@@ -66,19 +73,13 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <!--<i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                                        <i:InvokeCommandAction Command="{Binding MoveWindowCommand}" 
-                                                               CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>-->
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Background="{StaticResource WindowFrameBrush}" Grid.Column="0">
                                     <TextBlock Text="{TemplateBinding Property=Title}"  
-                                               Foreground="#FF4E4E50" 
+                                               Foreground="{StaticResource DefaultFontColorBrush}" 
                                                Margin="5,5,0,5" 
                                                Grid.Row="0"
                                                FontSize="15"

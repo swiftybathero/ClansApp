@@ -17,29 +17,15 @@ namespace ClansApp.UI.ViewModels
         private WindowState _customWindowState;
         public WindowState CustomWindowState
         {
-            get
-            {
-                return _customWindowState;
-            }
-            set
-            {
-                _customWindowState = value;
-                OnPropertyChanged(nameof(CustomWindowState));
-            }
+            get { return _customWindowState; }
+            set { SetProperty(ref _customWindowState, value); }
         }
 
         private ResizeMode _customResizeMode;
         public ResizeMode CustomResizeMode
         {
-            get
-            {
-                return _customResizeMode;
-            }
-            set
-            {
-                _customResizeMode = value;
-                OnPropertyChanged(nameof(CustomResizeMode));
-            }
+            get { return _customResizeMode; }
+            set { SetProperty(ref _customResizeMode, value); }
         }
 
 

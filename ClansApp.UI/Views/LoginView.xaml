@@ -7,8 +7,46 @@
              xmlns:vm="clr-namespace:ClansApp.UI.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" 
-             d:DesignWidth="300">
+             d:DesignWidth="600">
     <Grid>
-        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Text}"/>
+        <Border Background="{StaticResource WindowFrameBrush}" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"
+                BorderBrush="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"
+                BorderThickness="1" 
+                CornerRadius="2">
+            <!--<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Text}"/>-->
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" 
+                           Text="API Key" 
+                           Margin="0,0,0,3" 
+                           Foreground="{StaticResource DefaultFontColorBrush}"/>
+                <TextBox Grid.Row="1" 
+                         Text="SAMPLE"
+                         Padding="2,0,2,0"
+                         Width="500" 
+                         Height="22"
+                         VerticalContentAlignment="Center"
+                         Foreground="{StaticResource ContentFontColorBrush}">
+                    <TextBox.Template>
+                        <ControlTemplate TargetType="{x:Type TextBox}">
+                            <Border BorderThickness="1" 
+                                    BorderBrush="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"
+                                    Background="White">
+                                <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                            </Border>
+                        </ControlTemplate>
+                    </TextBox.Template>
+                </TextBox>
+                <Button Grid.Row="2" 
+                        Content="LOGIN"
+                        Margin="0,10,0,0"/>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
