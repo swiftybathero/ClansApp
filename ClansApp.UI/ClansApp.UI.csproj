@@ -59,6 +59,10 @@
     <Compile Include="Converters\WindowFrameConverters.cs" />
     <Compile Include="Extensions\RelayCommand.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
+    <Compile Include="Services\IMessenger.cs" />
+    <Compile Include="Services\Messages\IMessage.cs" />
+    <Compile Include="Services\Messages\LoginMessage.cs" />
+    <Compile Include="Services\Messenger.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WindowFrameViewModel.cs" />

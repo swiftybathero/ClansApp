@@ -1,4 +1,6 @@
 ﻿using ClansApp.UI.Extensions;
+using ClansApp.UI.Services;
+using ClansApp.UI.Services.Messages;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +53,14 @@ namespace ClansApp.UI.ViewModels
             CurrentViewModel = new LoginViewModel();
 
             PropertyChanged += WindowFrameViewModel_PropertyChanged;
+
+            Messenger.Default.Register<LoginMessage>(OnLogin);
+        }
+
+        private void OnLogin(LoginMessage message)
+        {
+            // TODO: handle login message
+            MessageBox.Show($"Sender: {message.Sender.ToString()}, API KEY: {message.Value}", ToString());
         }
 
         private void WindowFrameViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
