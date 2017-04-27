@@ -57,18 +57,32 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\WindowFrameConverters.cs" />
+    <Compile Include="Extensions\Observable.cs" />
     <Compile Include="Extensions\RelayCommand.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
+    <Compile Include="Services\ClansDataService.cs" />
+    <Compile Include="Services\IClansDataService.cs" />
     <Compile Include="Services\IMessenger.cs" />
     <Compile Include="Services\Messages\IMessage.cs" />
     <Compile Include="Services\Messages\LoginMessage.cs" />
+    <Compile Include="Services\Messages\MemberDataMessage.cs" />
     <Compile Include="Services\Messenger.cs" />
+    <Compile Include="ViewModels\DataViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WindowFrameViewModel.cs" />
+    <Compile Include="Views\DataView.xaml.cs">
+      <DependentUpon>DataView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wrappers\MemberWrapper.cs" />
+    <Compile Include="Wrappers\WrapperBase.cs" />
+    <Page Include="Views\DataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowFrame.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -112,7 +126,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ClansApp.Data\ClansApp.Data.csproj">
+      <Project>{96921c81-a817-43be-892e-6705af975a04}</Project>
+      <Name>ClansApp.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\CloseImage.png" />
   </ItemGroup>

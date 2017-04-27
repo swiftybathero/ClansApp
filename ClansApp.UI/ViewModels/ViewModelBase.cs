@@ -1,4 +1,5 @@
 ﻿
+using ClansApp.UI.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace ClansApp.UI.ViewModels
 {
-    public abstract class ViewModelBase : INotifyPropertyChanged
+    /// <summary>
+    /// Basic class for ViewModels
+    /// </summary>
+    public abstract class ViewModelBase : Observable
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         /// <summary>
         /// Wrapper for property setter
         /// </summary>
@@ -22,17 +24,12 @@ namespace ClansApp.UI.ViewModels
         /// <param name="propertyName">Name of the property</param>
         protected void SetProperty<T>(ref T member, T value, [CallerMemberName] string propertyName = null)
         {
-            if (object.Equals(member, value))
+            if (Equals(member, value))
             {
                 return;
             }
             member = value;
             OnPropertyChanged(propertyName);
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

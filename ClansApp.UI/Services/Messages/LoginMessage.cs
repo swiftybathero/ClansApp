@@ -15,10 +15,23 @@ namespace ClansApp.UI.Services.Messages
         private string _value;
         public string Value => _value;
 
+        public event Action LoginStartedCallBackEvent;
+        public event Action LoginFinishedCallBackEvent;
+
         public LoginMessage(ViewModelBase sender, string value)
         {
             _sender = sender;
             _value = value;
+        }
+
+        public void OnLoginStarted()
+        {
+            LoginStartedCallBackEvent?.Invoke();
+        }
+
+        public void OnLoginFinished()
+        {
+            LoginFinishedCallBackEvent?.Invoke();
         }
     }
 }

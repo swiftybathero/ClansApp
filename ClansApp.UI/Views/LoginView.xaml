@@ -44,7 +44,7 @@
                     </TextBox.Template>
                 </TextBox>
                 <Button Grid.Row="2" 
-                        Content="LOGIN"
+                        Content="{Binding LoginButtonText, FallbackValue=LOGIN}"
                         Margin="0,10,0,0"
                         Command="{Binding LoginCommand}"/>
             </Grid>

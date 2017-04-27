@@ -12,6 +12,9 @@ namespace ClansApp.UI.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
+        private const string ButtonLoginText = "LOGIN";
+        private const string ButtonDataFetchingText = "LOADING ...";
+
         private string _apiKey;
         public string ApiKey
         {
@@ -19,11 +22,52 @@ namespace ClansApp.UI.ViewModels
             set { SetProperty(ref _apiKey, value); }
         }
 
+        private string _loginButtonText;
+        public string LoginButtonText
+        {
+            get { return _loginButtonText; }
+            set { SetProperty(ref _loginButtonText, value); }
+        }
+
+        private bool _loginInProcess;
+        public bool LoginInProcess
+        {
+            get { return _loginInProcess; }
+            set { SetProperty(ref _loginInProcess, value); }
+        }
+
         public ICommand LoginCommand { get; set; }
 
         public LoginViewModel()
         {
-            LoginCommand = new RelayCommand<object>((o) => Messenger.Default.Send(new LoginMessage(this, ApiKey)), (o) => !string.IsNullOrEmpty(ApiKey));
+            LoginCommand = new RelayCommand<object>(OnLogin, OnCanLogin);
+            LoginButtonText = ButtonLoginText;
+        }
+
+        private void OnLogin(object obj)
+        {
+            var loginMessage = new LoginMessage(this, ApiKey);
+            loginMessage.LoginStartedCallBackEvent += OnLoginStartedCallBack;
+            loginMessage.LoginFinishedCallBackEvent += OnLoginFinishedCallBack;
+
+            Messenger.Default.Send(loginMessage);
+        }
+
+        private void OnLoginStartedCallBack()
+        {
+            LoginInProcess = true;
+            LoginButtonText = ButtonDataFetchingText;
+        }
+
+        private void OnLoginFinishedCallBack()
+        {
+            LoginInProcess = false;
+            LoginButtonText = ButtonLoginText;
+        }
+
+        private bool OnCanLogin(object obj)
+        {
+            return !string.IsNullOrEmpty(ApiKey) && !LoginInProcess;
         }
     }
 }

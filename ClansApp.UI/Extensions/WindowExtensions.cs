@@ -16,8 +16,7 @@ namespace ClansApp.UI.Extensions
 
         private static void ChangeWindowStartupLocation(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var window = d as Window;
-            if (window != null)
+            if (d is Window window)
             {
                 window.WindowStartupLocation = GetWindowStartupLocation(d);
             }

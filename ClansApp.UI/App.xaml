@@ -124,5 +124,8 @@
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <v:LoginView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:DataViewModel}">
+            <v:DataView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClansApp.UI", "ClansApp.UI\ClansApp.UI.csproj", "{7B0B58CF-3F7F-45CE-B7BE-3AB91853FDE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClansApp.Data", "ClansApp.Data\ClansApp.Data.csproj", "{96921C81-A817-43BE-892E-6705AF975A04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7B0B58CF-3F7F-45CE-B7BE-3AB91853FDE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B0B58CF-3F7F-45CE-B7BE-3AB91853FDE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B0B58CF-3F7F-45CE-B7BE-3AB91853FDE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96921C81-A817-43BE-892E-6705AF975A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96921C81-A817-43BE-892E-6705AF975A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96921C81-A817-43BE-892E-6705AF975A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96921C81-A817-43BE-892E-6705AF975A04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
