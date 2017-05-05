@@ -38,6 +38,15 @@ namespace ClansApp.UI.ViewModels
             set { SetProperty(ref _customResizeMode, value); }
         }
 
+        public const string MainWindowTitle = "Clash of Clans Stats";
+
+        private string _windowTitle;
+        public string WindowTitle
+        {
+            get { return _windowTitle; }
+            set { SetProperty(ref _windowTitle, value); }
+        }
+
 
         public ICommand CloseWindowCommand { get; set; }
         public ICommand MinimizeWindowCommand { get; set; }
@@ -53,6 +62,7 @@ namespace ClansApp.UI.ViewModels
         public WindowFrameViewModel()
         {
             CustomResizeMode = ResizeMode.CanResizeWithGrip;
+            WindowTitle = MainWindowTitle;
 
             CloseWindowCommand = new RelayCommand<object>((o) => (o as Window).Close() /*App.Current.Shutdown()*/);
             MinimizeWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Minimized);
