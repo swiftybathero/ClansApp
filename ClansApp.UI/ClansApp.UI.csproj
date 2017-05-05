@@ -60,6 +60,8 @@
     <Compile Include="Extensions\Observable.cs" />
     <Compile Include="Extensions\RelayCommand.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
+    <Compile Include="Serializers\ISettingsSerializer.cs" />
+    <Compile Include="Serializers\XmlSettingsSerializer.cs" />
     <Compile Include="Services\ClansDataService.cs" />
     <Compile Include="Services\IClansDataService.cs" />
     <Compile Include="Services\IMessenger.cs" />

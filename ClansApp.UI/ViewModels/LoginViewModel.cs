@@ -1,4 +1,5 @@
 ﻿using ClansApp.UI.Extensions;
+using ClansApp.UI.Serializers;
 using ClansApp.UI.Services;
 using ClansApp.UI.Services.Messages;
 using System;
@@ -38,10 +39,22 @@ namespace ClansApp.UI.ViewModels
 
         public ICommand LoginCommand { get; set; }
 
-        public LoginViewModel()
+        private ISettingsSerializer _settings;
+
+        private LoginViewModel()
         {
             LoginCommand = new RelayCommand<object>(OnLogin, OnCanLogin);
             LoginButtonText = ButtonLoginText;
+        }
+        public LoginViewModel(ISettingsSerializer settings) : this()
+        {
+            _settings = settings;
+            LoadSettings();
+
+        }
+        private void LoadSettings()
+        {
+            ApiKey = _settings.LoadAPIKey();
         }
 
         private void OnLogin(object obj)
@@ -57,6 +70,12 @@ namespace ClansApp.UI.ViewModels
         {
             LoginInProcess = true;
             LoginButtonText = ButtonDataFetchingText;
+            SaveSettings();
+        }
+
+        private void SaveSettings()
+        {
+            _settings.SaveAPIKey(ApiKey);
         }
 
         private void OnLoginFinishedCallBack()

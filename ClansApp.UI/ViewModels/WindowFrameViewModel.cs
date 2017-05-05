@@ -1,4 +1,5 @@
 ﻿using ClansApp.UI.Extensions;
+using ClansApp.UI.Serializers;
 using ClansApp.UI.Services;
 using ClansApp.UI.Services.Messages;
 using System;
@@ -69,7 +70,7 @@ namespace ClansApp.UI.ViewModels
             MaximizeWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Maximized);
             RestoreWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Normal);
 
-            _loginViewModel = new LoginViewModel();
+            _loginViewModel = new LoginViewModel(new XmlSettingsSerializer()); // perfect place for DI
             _dataViewModel = new DataViewModel();
 
             _clansDataService = new ClansDataService();
