@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClansApp.UI", "ClansApp.UI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClansApp.Data", "ClansApp.Data\ClansApp.Data.csproj", "{96921C81-A817-43BE-892E-6705AF975A04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClansApp.Tests", "ClansApp.Tests\ClansApp.Tests.csproj", "{49395CFF-C00E-4DA7-9DF9-10EFB6009728}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{96921C81-A817-43BE-892E-6705AF975A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96921C81-A817-43BE-892E-6705AF975A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96921C81-A817-43BE-892E-6705AF975A04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49395CFF-C00E-4DA7-9DF9-10EFB6009728}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49395CFF-C00E-4DA7-9DF9-10EFB6009728}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49395CFF-C00E-4DA7-9DF9-10EFB6009728}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49395CFF-C00E-4DA7-9DF9-10EFB6009728}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

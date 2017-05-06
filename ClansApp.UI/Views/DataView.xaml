@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding MemberList}">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding MemberList}" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Role" Binding="{Binding Role}"/>
