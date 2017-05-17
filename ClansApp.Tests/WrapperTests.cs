@@ -1,7 +1,6 @@
 ﻿using ClansApp.Data.Models;
 using ClansApp.UI.Wrappers;
 using NUnit.Framework;
-using System;
 
 namespace ClansApp.Tests
 {
@@ -11,7 +10,7 @@ namespace ClansApp.Tests
         private Member member;
         private MemberWrapper memberWrapper;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void Setup()
         {
             member = new Member()
@@ -23,14 +22,14 @@ namespace ClansApp.Tests
         }
 
         [Test]
-        public void IsMemberEqualToWrapper()
+        public void AreMemberValuesEqualToWrappers()
         {
             foreach (var property in member.GetType().GetProperties())
             {
                 var wrapperProperty = memberWrapper.GetType().GetProperty(property.Name);
                 if (wrapperProperty != null)
                 {
-                    Assert.AreEqual(property.GetValue(member), wrapperProperty.GetValue(memberWrapper));
+                    Assert.That(property.GetValue(member), Is.EqualTo(wrapperProperty.GetValue(memberWrapper)));
                 }
             }
         }
@@ -39,7 +38,13 @@ namespace ClansApp.Tests
         public void DoesWrapperChangeAffectsMember()
         {
             memberWrapper.Role = "Leader";
-            Assert.AreEqual(member.Role, memberWrapper.Role);
+            Assert.That(member.Role, Is.EqualTo(memberWrapper.Role));
+        }
+
+        [Test]
+        public void IsMemberEqualToWrapperModel()
+        {
+            Assert.That(member, Is.EqualTo(memberWrapper.Model));
         }
     }
 }
