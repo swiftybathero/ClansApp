@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClansApp.UI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace ClansApp.UI
         public WindowFrame()
         {
             InitializeComponent();
+        }
+
+        public WindowFrame(WindowFrameViewModel windowFrameViewModel) : this()
+        {
+            DataContext = windowFrameViewModel;
         }
     }
 }

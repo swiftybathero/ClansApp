@@ -12,8 +12,5 @@
         Style="{StaticResource ResourceKey=WindowStyle}"
         ext:WindowExtensions.WindowStartupLocation="CenterScreen">
     <!--Attached property is pointless without binding, but i'm leaving it as an example of attached property behaviour-->
-    <Window.DataContext>
-        <vm:WindowFrameViewModel/>
-    </Window.DataContext>
     <ContentControl Content="{Binding Path=CurrentViewModel}"/>
 </Window>

@@ -60,7 +60,7 @@ namespace ClansApp.UI.ViewModels
 
         private IClansDataService _clansDataService;
 
-        public WindowFrameViewModel()
+        public WindowFrameViewModel(IClansDataService clansDataService, ISettingsSerializer settingsSerializer)
         {
             CustomResizeMode = ResizeMode.CanResizeWithGrip;
             WindowTitle = MainWindowTitle;
@@ -70,12 +70,13 @@ namespace ClansApp.UI.ViewModels
             MaximizeWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Maximized);
             RestoreWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Normal);
 
-            _loginViewModel = new LoginViewModel(new XmlSettingsSerializer()); // perfect place for DI
+            #region ViewModels
+            _loginViewModel = new LoginViewModel(settingsSerializer); // perfect place for DI
             _dataViewModel = new DataViewModel();
+            CurrentViewModel = _loginViewModel; 
+            #endregion
 
-            _clansDataService = new ClansDataService();
-
-            CurrentViewModel = _loginViewModel;
+            _clansDataService = clansDataService;
 
             PropertyChanged += WindowFrameViewModel_PropertyChanged;
 

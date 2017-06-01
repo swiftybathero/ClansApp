@@ -6,8 +6,7 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:cv="clr-namespace:ClansApp.UI.Converters"
              xmlns:v="clr-namespace:ClansApp.UI.Views"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             StartupUri="WindowFrame.xaml">
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <Application.Resources>
         <!--Converters-->
         <cv:MaximizeRestoreVisibilityConverter x:Key="MaximizeVisibilityConverter" IsReverse="False"/>
