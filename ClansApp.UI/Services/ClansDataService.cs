@@ -13,7 +13,7 @@ namespace ClansApp.UI.Services
 {
     public class ClansDataService : IClansDataService
     {
-        private IClansDataProvider _clansDataProvider = ClansDataProvider.Default;
+        private IClansDataProvider _clansDataProvider;
         private const string ClansDataGetUrl = "https://api.clashofclans.com/v1/clans/%P89V02CG";
 
         public string APIKey
@@ -22,11 +22,9 @@ namespace ClansApp.UI.Services
             set { _clansDataProvider.APIKey = value; }
         }
 
-        public ClansDataService() { }
-
-        public ClansDataService(string apiKey)
+        public ClansDataService(IClansDataProvider clansDataProvider)
         {
-            APIKey = apiKey;
+            _clansDataProvider = clansDataProvider;
         }
 
         public async Task<ObservableCollection<MemberWrapper>> GetAllMembersAsync()
