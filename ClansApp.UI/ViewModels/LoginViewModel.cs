@@ -54,7 +54,7 @@ namespace ClansApp.UI.ViewModels
         }
         private void LoadSettings()
         {
-            ApiKey = _settings.LoadAPIKey();
+            ApiKey = _settings?.LoadAPIKey();
         }
 
         private void OnLogin(object obj)
@@ -75,7 +75,7 @@ namespace ClansApp.UI.ViewModels
 
         private void SaveSettings()
         {
-            _settings.SaveAPIKey(ApiKey);
+            _settings?.SaveAPIKey(ApiKey);
         }
 
         private void OnLoginFinishedCallBack()

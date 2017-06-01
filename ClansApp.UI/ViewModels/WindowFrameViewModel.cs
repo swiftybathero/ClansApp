@@ -22,8 +22,8 @@ namespace ClansApp.UI.ViewModels
             set { SetProperty(ref _currentViewModel, value); }
         }
 
-        private LoginViewModel _loginViewModel;
-        private DataViewModel _dataViewModel;
+        public LoginViewModel LoginViewModel { get; private set; }
+        public DataViewModel DataViewModel { get; private set; }
 
         private WindowState _customWindowState;
         public WindowState CustomWindowState
@@ -71,9 +71,9 @@ namespace ClansApp.UI.ViewModels
             RestoreWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Normal);
 
             #region ViewModels
-            _loginViewModel = new LoginViewModel(settingsSerializer); // perfect place for DI
-            _dataViewModel = new DataViewModel();
-            CurrentViewModel = _loginViewModel; 
+            LoginViewModel = new LoginViewModel(settingsSerializer); // perfect place for DI
+            DataViewModel = new DataViewModel();
+            CurrentViewModel = LoginViewModel; 
             #endregion
 
             _clansDataService = clansDataService;
@@ -98,7 +98,7 @@ namespace ClansApp.UI.ViewModels
             if (clanMemberList.Count != 0)
             {
                 Messenger.Default.Send(new MemberDataMessage(this, clanMemberList));
-                CurrentViewModel = _dataViewModel;
+                CurrentViewModel = DataViewModel;
             }
         }
 
