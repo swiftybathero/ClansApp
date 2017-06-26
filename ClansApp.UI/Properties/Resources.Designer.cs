@@ -63,9 +63,29 @@ namespace ClansApp.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BackwardImage {
+            get {
+                object obj = ResourceManager.GetObject("BackwardImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CloseImage {
             get {
                 object obj = ResourceManager.GetObject("CloseImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ForwardImage {
+            get {
+                object obj = ResourceManager.GetObject("ForwardImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

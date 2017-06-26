@@ -151,5 +151,11 @@
   <ItemGroup>
     <Resource Include="Resources\RestoreImage.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BackwardImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ForwardImage.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
