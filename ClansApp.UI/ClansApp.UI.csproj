@@ -72,6 +72,10 @@
     <Compile Include="Services\Messages\LoginMessage.cs" />
     <Compile Include="Services\Messages\MemberDataMessage.cs" />
     <Compile Include="Services\Messenger.cs" />
+    <Compile Include="Services\Navigation\INavigationItem.cs" />
+    <Compile Include="Services\Navigation\NavigationItem.cs" />
+    <Compile Include="Services\Navigation\IWindowFrame.cs" />
+    <Compile Include="Services\Navigation\NavigationService.cs" />
     <Compile Include="Startup\BootStrapper.cs" />
     <Compile Include="ViewModels\DataViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

@@ -2,6 +2,7 @@
 using ClansApp.UI.Serializers;
 using ClansApp.UI.Services;
 using ClansApp.UI.Services.Messages;
+using ClansApp.UI.Services.Navigation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using System.Windows.Input;
 
 namespace ClansApp.UI.ViewModels
 {
-    public class WindowFrameViewModel : ViewModelBase
+    public class WindowFrameViewModel : ViewModelBase, IWindowFrame<ViewModelBase>
     {
         private ViewModelBase _currentViewModel;
         public ViewModelBase CurrentViewModel
@@ -22,8 +23,16 @@ namespace ClansApp.UI.ViewModels
             set { SetProperty(ref _currentViewModel, value); }
         }
 
-        public LoginViewModel LoginViewModel { get; private set; }
-        public DataViewModel DataViewModel { get; private set; }
+        /// <summary>
+        /// ViewModel properties are used by UnitTests
+        /// </summary>
+        public LoginViewModel LoginViewModel => _navigationService.Get<LoginViewModel>();
+        public DataViewModel DataViewModel => _navigationService.Get<DataViewModel>();
+
+        #region Navigation
+        private NavigationService<ViewModelBase> _navigationService;
+        public NavigationService<ViewModelBase> Navigation => _navigationService; 
+        #endregion
 
         private WindowState _customWindowState;
         public WindowState CustomWindowState
@@ -70,10 +79,11 @@ namespace ClansApp.UI.ViewModels
             MaximizeWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Maximized);
             RestoreWindowCommand = new RelayCommand<object>((o) => CustomWindowState = WindowState.Normal);
 
-            #region ViewModels
-            LoginViewModel = new LoginViewModel(settingsSerializer); // perfect place for DI
-            DataViewModel = new DataViewModel();
-            CurrentViewModel = LoginViewModel; 
+            #region Navigation initialization
+            _navigationService = new NavigationService<ViewModelBase>(this);
+            _navigationService.Register(new LoginViewModel(settingsSerializer)).AsStartPage();
+            _navigationService.Register(new DataViewModel());
+            _navigationService.MoveToStartPage(); 
             #endregion
 
             _clansDataService = clansDataService;
@@ -98,7 +108,7 @@ namespace ClansApp.UI.ViewModels
             if (clanMemberList.Count != 0)
             {
                 Messenger.Default.Send(new MemberDataMessage(this, clanMemberList));
-                CurrentViewModel = DataViewModel;
+                _navigationService.Set<DataViewModel>();
             }
         }
 

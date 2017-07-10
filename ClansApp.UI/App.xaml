@@ -48,7 +48,7 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="NavigationButtonStyle" BasedOn="{StaticResource WindowFrameButtonStyle}" TargetType="{x:Type Button}">
-            <Setter Property="Margin" Value="5,0,0,5"/>
+            <!--<Setter Property="Margin" Value="5,0,0,5"/>-->
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -82,11 +82,12 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="35"/> <!--Navigation row-->
+                                <!--<RowDefinition Height="35"/>--> <!--Navigation row-->
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Background="{StaticResource WindowFrameBrush}" Grid.Column="0">
@@ -97,7 +98,18 @@
                                                FontSize="15"
                                                VerticalAlignment="Center"/>
                                 </Border>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" >
+                                <!--Navigation-->
+                                <StackPanel Grid.Column="1" Margin="0,0,5,0" HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <Button Style="{StaticResource NavigationButtonStyle}"
+                                            Command="{Binding Navigation.MovePrev}">
+                                        <Image Source="/Resources/BackwardImage.png"/>
+                                    </Button>
+                                    <!--<Button Style="{StaticResource NavigationButtonStyle}"
+                                            Command="{Binding Navigation.MoveForward}">
+                                        <Image Source="/Resources/ForwardImage.png"/>
+                                    </Button>-->
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" >
                                     <Button Style="{StaticResource WindowFrameButtonStyle}" 
                                             Command="{Binding MinimizeWindowCommand}">
                                         <Image Source="/Resources/MinimizeImage.png"/>
@@ -125,16 +137,6 @@
                             </Grid>
                             <Border Grid.Row="1" Background="White" Margin="5,0,5,5">
                                 <ContentPresenter/>
-                            </Border>
-                            <Border Grid.Row="2">
-                                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                                    <Button Style="{StaticResource NavigationButtonStyle}">
-                                        <Image Source="/Resources/BackwardImage.png"/>
-                                    </Button>
-                                    <Button Style="{StaticResource NavigationButtonStyle}">
-                                        <Image Source="/Resources/ForwardImage.png"/>
-                                    </Button>
-                                </StackPanel>
                             </Border>
                         </Grid>
                     </ControlTemplate>
