@@ -1,4 +1,9 @@
-# ClansApp
+# ClansApp - DEPRECATED
+
+I'm no longer working on this project. There is a possibility that i will revive it in another form - preferably full-web MVC application.
+
+# What it was supposed to be:
+
 Simple Clash of Clans stats application - currently showing simple data grid of hardcoded Clan Tag.
 
 ### Development target:
